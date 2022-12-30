@@ -1,18 +1,40 @@
 body{
-  background-color: #123;
+  background-color: #123; 
   color:#fff;
 }
+
 main{
   width: 300px;
   margin: 50px auto 0;
   margin-top: 7%;
 }
+
+div .themeContainer {
+  margin-top: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn button {
+  padding: 0.5% 0.5%;
+  border-radius: 5px;
+  border: none;
+}
+
 div.boardContainer{
   display: grid;
   border: 2px solid #fff;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
 }
+
 div.squareContainer{
   width: 100px;
   height: 100px;
@@ -21,15 +43,27 @@ div.squareContainer{
   font-size: 4rem;
   text-align: center;
 }
+
 div.result{
   font-size: 2rem;
   padding: 10px;
   text-align: center;
   margin-bottom: 5%;
+  margin-top: -16%;
 }
+
 div.result.green{
   background-color: #5a5;
 }
+
 div.result.red{
-  background-color: #a55;
+  background-color: rgb(180, 21, 21);
 }
+
+/* .lightTheme {
+  background-color: #b0c4de;
+}
+
+.darkTheme {
+  background-color: #445872;;
+} */

@@ -2,6 +2,7 @@ import './App.css';
 import Board from "./Component/Board";
 import Square from "./Component/Square";
 import {useState, useEffect} from 'react';
+import Theme from './Component/Theme';
 
 const defaultSquares = () => (new Array(9)).fill(null);
 
@@ -17,28 +18,35 @@ function App() {
 
   useEffect(() => {
     const isComputerTurn = squares.filter(square => square !== null).length % 2 === 1;
+
     const linesThatAre = (a,b,c) => {
       return lines.filter(squareIndexes => {
         const squareValues = squareIndexes.map(index => squares[index]);
         return JSON.stringify([a,b,c].sort()) === JSON.stringify(squareValues.sort());
       });
     };
+
     const emptyIndexes = squares
       .map((square,index) => square === null ? index : null)
       .filter(val => val !== null);
+
     const playerWon = linesThatAre('x', 'x', 'x').length > 0;
+
     const computerWon = linesThatAre('o', 'o', 'o').length > 0;
+
     if (playerWon) {
       setWinner('x');
     }
     if (computerWon) {
       setWinner('o');
     }
+
     const putComputerAt = index => {
       let newSquares = squares;
       newSquares[index] = 'o';
       setSquares([...newSquares]);
     };
+    
     if (isComputerTurn) {
 
       const winingLines = linesThatAre('o', 'o', null);
@@ -78,7 +86,10 @@ function App() {
   }
 
   return (
+    <>
+    <Theme />
     <main>
+      
       {!!winner && winner === 'x' && (
         <div className="result green">
           You WON!
@@ -89,17 +100,20 @@ function App() {
           You LOST!
         </div>
       )}
+      
       <Board>
         {squares.map((square,index) =>
           <Square
+           key={`${index}`}
             x={square==='x'?1:0}
             o={square==='o'?1:0}
             onClick={() => handleSquareClick(index)} />
         )}
       </Board>
       
-
     </main>
+    
+    </>
   );
 }
 
